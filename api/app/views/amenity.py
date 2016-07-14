@@ -1,4 +1,5 @@
 from flask import Flask, request
+from app.models.amenity import Amenity
 
 app = Flask(__name__)
 
