@@ -11,3 +11,6 @@ class Place(BaseModel):
     price_by_night = peewee.IntegerField(default = 0)
     latitude = peewee.FloatField()
     longitude = peewee.FloatField()
+
+    def to_hash(self):
+        return self.id + self.created_at + self.updated_at + User.id + City.id + self.name + self.description + self.number_rooms + self.number_bathrooms + self.max_guest + self.price_by_night + self.latitude + self.longitude

@@ -1,13 +1,16 @@
-from flask import Flask, request, jsonify
-from datetime import datetime
-from flask_json import json_response
-from flask.ext.mysql import MySQL
 
-app = Flask(__name__)
-@app.route('/')
+from app import app
+import datetime
+from flask import jsonify
+
+@app.route("/", methods=["GET"])
 def index():
-    if request.method == 'GET': #If the request is GET, return the parameters as a hash
-        return flask_json.json_response.jsonify(status = "OK", utc_time = datetime.utcnow(), time = datetime.now())
+    data = {
+        "status": "OK",
+        "utc-time": str(datetime.datetime.utcnow()),
+        "time": str(datetime.datetime.now()),
+    }
+    return jsonify(data)
 
 def before_request():
     conn = mysql.connect() #Connect a DB

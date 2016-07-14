@@ -9,4 +9,6 @@ class User(BaseModel):
     is_admin = peewee.BooleanField(default = False)
     def set_password(self, clear_password): #Function to encrypt password using RSA's MD5 algorithm
         password = md5.new(clear_password).digest()
-        
+
+    def to_hash(self):
+        return str(self.id) + self.created_at + self.updated_at + self.email + self.first_name + self.last_name + self.is_admin
